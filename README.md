@@ -39,5 +39,7 @@ Step 2: Mount binderfs
 => Should see test_client prints messages to stdout.
 
 # Ref:
-https://github.com/hungys/binder-for-linux
-Sources may from those links
+Sources may from those links:
+- https://github.com/hungys/binder-for-linux
+- https://github.com/hiking90/binder-linux
+- https://github.com/anthann/binder-for-linux-kernel-5
