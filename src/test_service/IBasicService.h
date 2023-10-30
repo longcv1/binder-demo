@@ -12,18 +12,39 @@
 
 using namespace android;
 
+// class IBasicService : public IInterface
+// {
+// public:
+//    DECLARE_META_INTERFACE(BasicService);
+//    virtual void sayHello() = 0;
+//    virtual int32_t random() = 0;
+// };
+
+// class BnBasicService : public BnInterface<IBasicService>
+// {
+// public:
+//    virtual status_t onTransact(uint32_t code, const Parcel &data, Parcel *reply, uint32_t flags = 0);
+// };
+
+/*******************************************/
 class IBasicService : public IInterface
 {
 public:
-	DECLARE_META_INTERFACE(BasicService);
-	virtual void sayHello() = 0;
-	virtual int32_t random() = 0;
+   DECLARE_META_INTERFACE(BasicService);
+   virtual int addAccount(const String16 &name) = 0;
+   virtual Vector<String16> listAccounts() = 0;
 };
 
 class BnBasicService : public BnInterface<IBasicService>
 {
 public:
-	virtual status_t onTransact(uint32_t code, const Parcel &data, Parcel *reply, uint32_t flags = 0);
+   enum
+   {
+      ADD_ACC_TRANSACTION = IBinder::FIRST_CALL_TRANSACTION,
+      LIST_ACC_TRANSACTION,
+   };
+
+   virtual status_t onTransact(uint32_t code, const Parcel &data, Parcel *reply, uint32_t flag = 0);
 };
 
 #endif
